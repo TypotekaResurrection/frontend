@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
+      "@styles/*": ["styles/*"],
+      "@img/*": ["img/*"],
+      "@globalStyles": ["styles/global.module.scss"],
+      "@models/*": ["models/*"],
+      "@utils/*": ["utils/*"],
+      "@mocks/*": ["mocks/*"],
+      "@hooks/*": ["hooks/*"]
+    }
+  }
+}
