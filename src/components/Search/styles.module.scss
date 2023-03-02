@@ -1,0 +1,145 @@
+.input {
+  -webkit-text-size-adjust: 100%;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  margin: 0;
+  overflow: visible;
+  font-family: "SFProDisplay", "Arial", serif;
+  font-size: 21px;
+  line-height: 1.42;
+  border: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+}
+
+.searchButton:focus,
+.searchButton:hover {
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
+  outline: 0;
+  opacity: 0.7;
+}
+
+.input:focus {
+  outline: 0;
+  border: 0;
+}
+
+.searchSection {
+  -webkit-text-size-adjust: 100%;
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 1.33;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  width: 1000px;
+  margin: 0 auto 40px;
+  padding: 0 30px;
+}
+
+.searchContainer {
+  -webkit-text-size-adjust: 100%;
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 1.33;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  position: relative;
+  width: 940px;
+  height: 610px;
+  padding-top: 31px;
+  background-color: #fff;
+  border-radius: 30px;
+}
+
+.searchHeader {
+  -webkit-text-size-adjust: 100%;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  font-family: "Inter", "Arial", sans-serif;
+  color: #000;
+  margin: 0 0 18px;
+  padding: 0 40px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.searchFormContainer {
+  -webkit-text-size-adjust: 100%;
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 1.33;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  margin-bottom: 216px;
+}
+
+.searchButton {
+  -webkit-text-size-adjust: 100%;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  line-height: 1.33;
+  background: 0 0;
+  min-height: 40px;
+  border-radius: 30px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
+  transition: all 200ms ease;
+  width: 110px;
+  margin-left: auto;
+}
+
+.form {
+  -webkit-text-size-adjust: 100%;
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 1.33;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  display: flex;
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 20px 40px;
+  margin-bottom: 30px;
+}
+
+.inputLabel {
+  -webkit-text-size-adjust: 100%;
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 1.33;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.nothing {
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 1.33;
+  box-sizing: inherit;
+  display: flex;
+  width: 100%;
+  padding: 20px 40px;
+  margin-bottom: 30px;
+  font-size: 32px;
+}

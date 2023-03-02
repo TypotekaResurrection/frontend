@@ -1,0 +1,22 @@
+.searchResult {
+  -webkit-text-size-adjust: 100%;
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 1.33;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  padding: 0 40px;
+  margin-bottom: 40px;
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 1.33;
+  box-sizing: inherit;
+  display: flex;
+  width: 100%;
+  padding: 20px 40px;
+  margin-bottom: 30px;
+  font-size: 32px;
+  a:hover {
+    opacity: 0.5;
+  }
+}
