@@ -1,0 +1,249 @@
+.popup {
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    position: relative;
+    border-radius: 30px;
+    background-color: #fff;
+    width: 600px;
+    padding: 30px 0 0;
+    margin: 0 auto 50px;
+    z-index: 0;
+}
+
+.inputLabel{
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+}
+
+.input{
+	-webkit-text-size-adjust: 100%;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    margin: 0;
+    overflow: visible;
+    font-family: "SFProDisplay","Arial",serif;
+    font-size: 21px;
+    line-height: 1.42;
+    border: 0;
+    width: 100%;
+}
+
+.closeButton{
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    color: inherit;
+    text-decoration: none;
+    transition: all 200ms ease;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    line-height: 1.33;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #c4c4c4;
+    background: url(../../img/icons/big-close-cross.svg) no-repeat center;
+    opacity: .4;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 0;
+    &:hover {
+        outline: 0;
+        opacity: .7
+    }
+}
+
+.popupHeader {
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    margin: 0 30px 31px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.popupContent{
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    width: 100%;
+    padding: 17px 30px 40px;
+}
+
+.inputLine{
+    -webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    border-bottom: 1px solid rgba(0,0,0,.25);
+    padding: 15px 0;
+}
+
+.errorContainer{
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    width: 100%;
+    padding: 14px 20px 20px;
+    margin-top: 28px;
+    background-color: #ffeded;
+    border-radius: 15px;
+}
+
+.errorContainerHeader{
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    font-weight: 700;
+    color: #eb5757;
+}
+
+.errorsList {
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0 0 0 19px;
+}
+
+.error{
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    margin: 6px 0 0;
+}
+
+.imageLoader{
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    padding: 15px 22px;
+    border-radius: 30px;
+    border: 2px solid rgba(0,0,0,.5);
+    color: rgba(0,0,0,.5);
+    transition: all 200ms ease;
+    cursor: pointer;
+}
+
+.imageLoaderInput {
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    font-size: 15px;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.imageLoaderIcon{
+	-webkit-text-size-adjust: 100%;
+    font-family: "Inter","Arial",sans-serif;
+    line-height: 1.33;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+    transition: all 200ms ease;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: url(../../img/icons/smile.svg) no-repeat center;
+    background-color: #fff;
+    font-size: 0;
+    margin-right: 10px;
+}
+
+.imageLoaderContainer {
+    -webkit-text-size-adjust: 100%;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.button{
+	-webkit-text-size-adjust: 100%;
+    -webkit-box-direction: normal;
+    box-sizing: inherit;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    line-height: 1.33;
+    background: 0 0;
+    border: 0;
+    padding-bottom: 2px;
+    min-height: 50px;
+    background-color: #003db3;
+    background-image: linear-gradient(180deg,#0057ff 0%,#003db3 100%);
+    color: #fff;
+    border-radius: 15px;
+    transition: all 200ms ease;
+    margin-top: 30px;
+    width: 210px;
+    &:hover {
+        background: #4786ff;
+        box-shadow: 0 0 15px rgb(0 87 255 / 50%);
+    }
+}
