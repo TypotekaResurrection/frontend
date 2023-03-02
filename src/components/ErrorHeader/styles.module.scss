@@ -1,0 +1,138 @@
+.error_text {
+	text-align: center
+}
+
+.header {
+	display: flex;
+	width: 1000px;
+	margin-left: auto;
+	min-height: 150px;
+	padding: 50px 30px;
+	align-items: center;
+	margin-right: auto;
+
+	.logo {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		transition: all 200ms ease;
+		margin-right: auto;
+		color: #000000;
+		font-weight: bold;
+		font-size: 16px;
+
+		&:hover {
+			transition: all 200ms ease;
+			opacity: 0.5;
+		}
+	}
+
+	.registration,
+	.enter {
+		margin-left: 18px;
+		position: relative;
+		font-family: "Inter", "Arial", sans-serif;
+		font-weight: 700;
+
+		&:hover {
+			transition: all 200ms ease;
+			opacity: 0.5;
+		}
+	}
+
+	.enter {
+		margin-right: 20px;
+	}
+
+	.buttonSearch {
+		border-radius: 50%;
+		width: 50px;
+		height: 50px;
+		background-color: rgba(0, 0, 0, 0.1);
+		background-image: url("../../img/icons/loupe.svg");
+		background-repeat: no-repeat;
+		background-position: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		line-height: 1.33;
+		border: 0;
+
+		&:hover {
+			transition: all 200ms ease;
+			opacity: 0.5;
+		}
+	}
+}
+
+.header__error {
+	.header__enter {
+		display: none;
+	}
+
+	.header__registration {
+		display: none;
+	}
+
+	.header__search {
+		display: none;
+	}
+
+	.header__logo {
+		position: relative;
+
+		&::after {
+			position: absolute;
+			top: 15px;
+			right: -43px;
+			width: 40px;
+			height: 20px;
+			font-family: "Inter", "Arial", sans-serif;
+			font-size: 15px;
+			line-height: 20px;
+			font-weight: 700;
+		}
+	}
+
+	.header__logo--404 {
+		&::after {
+			content: "/ 404";
+		}
+	}
+
+	.header__logo--500 {
+		&::after {
+			content: "/ 500";
+		}
+	}
+}
+
+.header__logo {
+    margin-right: auto
+}
+
+.logo {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	cursor: pointer;
+	-webkit-transition: all 200ms ease;
+	transition: all 200ms ease;
+	.logo__image {
+		display: block;
+		margin-right: 20px;
+		font-family: "Inter", "Arial", sans-serif;
+		font-weight: 700;
+	}
+	.logo__name {
+		display: block;
+		margin-right: 20px;
+		font-family: "Inter", "Arial", sans-serif;
+		font-weight: 700;
+	}
+	&:hover {
+		opacity: .5;
+	}
+	&:active {
+		opacity: .3;
+	}
+}
