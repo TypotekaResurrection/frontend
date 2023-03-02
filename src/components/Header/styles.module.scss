@@ -1,0 +1,177 @@
+.header {
+  display: flex;
+  width: 1000px;
+  margin-left: auto;
+  min-height: 150px;
+  padding: 50px 30px;
+  align-items: center;
+  margin-right: auto;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 200ms ease;
+    margin-right: auto;
+    color: #000000;
+    font-weight: bold;
+    font-size: 16px;
+    &:hover {
+      transition: all 200ms ease;
+      opacity: 0.5;
+    }
+  }
+
+  .registration,
+  .enter,
+  .username {
+    margin-left: 18px;
+    position: relative;
+    font-weight: 700;
+    &:hover {
+      transition: all 200ms ease;
+      opacity: 0.5;
+    }
+  }
+
+  .enter {
+    margin-right: 20px;
+  }
+
+  .buttonSearch {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.1);
+    background-image: url("../../img/icons/loupe.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    line-height: 1.33;
+    border: 0;
+    &:hover {
+      transition: all 200ms ease;
+      opacity: 0.5;
+    }
+  }
+  .username {
+  }
+  .buttonAddArticle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    flex-wrap: wrap;
+    line-height: 1.33;
+    border: 0;
+    padding-bottom: 2px;
+    min-height: 50px;
+    background-color: #003db3;
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(#0057ff),
+      to(#003db3)
+    );
+    background-image: linear-gradient(180deg, #0057ff 0%, #003db3 100%);
+    color: #fff;
+    border-radius: 15px;
+    width: 160px;
+    transition: all 200ms ease;
+    align-self: flex-end;
+    &:hover {
+      background: #4786ff;
+      box-shadow: 0 0 15px rgb(0 87 255 / 50%);
+    }
+  }
+  .dropdown {
+    position: relative;
+    .button {
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 50px;
+      height: 50px;
+      font-size: 0;
+      border-radius: 50%;
+      background: url("../../img/icons/burger.svg") center no-repeat,
+        linear-gradient(180deg, #595959 0%, #141414 100%);
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      line-height: 1.33;
+      &:hover,
+      &:focus {
+        background-image: url("../../img/icons/burger.svg"),
+          linear-gradient(to bottom, #717171 100%);
+        box-shadow: 0 0 15px #595959;
+      }
+    }
+    .adminNavigation {
+      position: absolute;
+      z-index: 10;
+      display: none;
+      left: -153px;
+      top: 70px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      width: 250px;
+      border-radius: 15px;
+      background-color: #fff;
+      li {
+        position: relative;
+        border-top: none;
+        width: 100%;
+        border: 1px solid transparent;
+        transition: all 200ms ease;
+        &:first-of-type {
+          border-top-left-radius: 15px;
+          border-top-right-radius: 15px;
+          border-color: transparent;
+        }
+        &:last-of-type {
+          border-bottom-left-radius: 15px;
+          border-bottom-right-radius: 15px;
+        }
+        &:hover {
+          background-color: #f2f8fd;
+          border-top: 1px solid #bfdcf6;
+          border-bottom: 1px solid #bfdcf6;
+        }
+        &:first-of-type {
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            margin-top: -27px;
+            right: 20%;
+            border: 12px solid transparent;
+            border-bottom: 15px solid #fff;
+            transition: all 200ms ease;
+          }
+          &:hover {
+            border-top-color: transparent;
+            &::before {
+              border-bottom-color: #f2f8fd;
+            }
+          }
+        }
+        a {
+          display: block;
+          padding: 9px 20px;
+          width: 100%;
+          font-weight: 600;
+          line-height: 2;
+          cursor: pointer;
+        }
+      }
+    }
+    &:hover .adminNavigation {
+      display: block;
+    }
+  }
+}
