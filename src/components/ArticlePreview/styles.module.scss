@@ -1,0 +1,110 @@
+.articlePreview {
+  width: 460px;
+  min-height: 410px;
+  padding-top: 10px;
+  padding-bottom: 27px;
+  margin-bottom: 20px;
+  break-inside: avoid;
+  background-color: #fff;
+  border-radius: 15px;
+  .previewBreadcrumbs {
+    display: flex;
+    list-style: none;
+    padding: 0 20px;
+    margin: 0 0 10px;
+    .item {
+      position: relative;
+      a {
+        font-size: 15px;
+        line-height: 20px;
+        &:hover {
+          transition: all 200ms ease;
+          color: #2f80ed;
+        }
+      }
+
+      &:not(:first-of-type) {
+        margin-left: 22px;
+        &::after {
+          content: "";
+          position: absolute;
+          top: 8px;
+          left: -12px;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background-color: #000;
+        }
+      }
+    }
+  }
+  .previewBackground {
+    width: 460px;
+    height: 240px;
+    margin-bottom: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .time {
+    margin: 0 0 40px;
+    font-size: 15px;
+    line-height: 20px;
+    color: #c4c4c4;
+    display: block;
+    padding: 0 20px;
+  }
+  .name {
+    margin: 0 0 10px;
+    font-size: 25px;
+    line-height: 30px;
+    letter-spacing: -0.02em;
+    display: block;
+    padding: 0 20px;
+    a {
+      background-color: transparent;
+      color: inherit;
+      text-decoration: none;
+      transition: all 200ms ease;
+      &:hover {
+        transition: all 200ms ease;
+        color: #2f80ed;
+      }
+    }
+  }
+  .previewText {
+    display: block;
+    padding: 0 20px;
+    width: 460px;
+    margin: 0 0 25px;
+    letter-spacing: -0.06em;
+  }
+  .previewComments {
+    font-size: 13px;
+    line-height: 20px;
+    white-space: pre;
+    margin: 0;
+    display: block;
+    padding: 0 20px;
+    &:hover {
+      transition: all 200ms ease;
+      color: #2f80ed;
+    }
+    .icon {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      margin-left: 5px;
+      margin-right: 1px;
+      background-image: url("../../img/icons/cloud.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    b {
+      font-weight: 400;
+    }
+  }
+}

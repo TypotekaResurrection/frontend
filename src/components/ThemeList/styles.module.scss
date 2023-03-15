@@ -1,0 +1,16 @@
+.themeList {
+  margin-bottom: 40px;
+  .themes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      position: relative;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}

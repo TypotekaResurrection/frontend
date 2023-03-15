@@ -1,0 +1,100 @@
+.wrapper {
+  min-width: 1000px;
+  background-image: url("../../../img/background.jpg");
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+  .post {
+    .postWrapper {
+      margin: 0 auto;
+      max-width: 970px;
+      padding: 0 15px;
+      .postHead {
+        position: relative;
+        padding-left: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        &Button {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 50px;
+          margin-top: 39px;
+          color: #000;
+          line-height: 1.54;
+          font-weight: 400;
+          font-size: 14px;
+          justify-content: center;
+          flex-wrap: wrap;
+          line-height: 1.33;
+          background: 0 0;
+          border: 0;
+          align-items: center;
+          cursor: pointer;
+          display: flex;
+          &:hover {
+            opacity: 0.5;
+          }
+          &::before {
+            content: "";
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+            border: 2px solid #000;
+            background: url("../../../img/icons/arrow-left.svg") center
+              no-repeat;
+          }
+        }
+        .time {
+          margin-bottom: 9px;
+        }
+        .title {
+          margin: 0;
+          padding: 0;
+          font-weight: 500;
+          font-size: 60px;
+          line-height: 1;
+        }
+        .themes {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          margin-bottom: 20px;
+          padding-top: 34px;
+          .listItem {
+            position: relative;
+            margin-right: 10px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+      .postPicture {
+        border-radius: 15px;
+        display: block;
+        width: 100%;
+        padding-top: 30px;
+        overflow: hidden;
+        max-height: 490px;
+        img {
+          border-radius: 15px;
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

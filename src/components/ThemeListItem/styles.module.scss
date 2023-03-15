@@ -1,0 +1,27 @@
+.listItem {
+  display: block;
+  min-width: 120px;
+  width: auto;
+  height: 50px;
+  padding: 12px 17px 18px;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 700;
+  text-align: center;
+  white-space: pre;
+  border: 2px solid #0057ff;
+  border-radius: 30px;
+  &:hover {
+    border: 2px solid #87b0ff;
+    color: rgba(24, 24, 24, 0.7);
+  }
+  &.active {
+    background-color: #0057ff;
+    color: #ffffff;
+  }
+  sup {
+    margin-left: 4px;
+  }
+  &.notClickable {
+    pointer-events: none;
+  }
+}

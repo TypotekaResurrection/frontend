@@ -1,0 +1,115 @@
+.commentsWrapper {
+  padding: 0 15px;
+  padding-top: 36px;
+  padding-bottom: 40px;
+  padding-left: calc(140px + 15px);
+  margin: 0 auto;
+  max-width: 970px;
+  .commentsSection {
+    border-radius: 15px;
+    background-color: #fff;
+    padding: 0;
+    h2 {
+      margin: 0;
+      padding: 30px 40px 20px;
+      font-size: 25px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+    .commentsList {
+      margin: 0;
+      list-style: none;
+      padding: 0 40px 42px;
+      flex-wrap: wrap;
+      .comment {
+        display: flex;
+        width: 100%;
+        flex-wrap: nowrap;
+        margin-top: 20px;
+        &:nth-of-type(1) {
+          margin-top: 13px;
+        }
+        .text {
+          max-width: 656px;
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          .head {
+            display: flex;
+            p {
+              margin: 0 5px 0 0;
+              font-weight: 700;
+              padding: 0;
+            }
+            time {
+              color: #c4c4c4;
+            }
+          }
+
+          .message {
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+    .footer {
+      padding: 20px 40px 30px;
+      background: linear-gradient(
+        180deg,
+        #eaf7fa 0%,
+        rgba(234, 247, 250, 0) 100%
+      );
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      .loginButton {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        justify-content: center;
+        flex-wrap: wrap;
+        line-height: 1.33;
+        border: 0;
+        padding-bottom: 2px;
+        min-height: 50px;
+        background-color: #003db3;
+        background-image: -webkit-gradient(
+          linear,
+          left top,
+          left bottom,
+          from(#0057ff),
+          to(#003db3)
+        );
+        background-image: linear-gradient(180deg, #0057ff 0%, #003db3 100%);
+        color: #fff;
+        border-radius: 15px;
+        width: 160px;
+        transition: all 200ms ease;
+        align-self: flex-end;
+        &:hover {
+          background: #4786ff;
+          box-shadow: 0 0 15px rgb(0 87 255 / 50%);
+        }
+      }
+      .registration {
+        display: block;
+        margin-left: 20px;
+        width: 548px;
+        p {
+          margin: 0;
+          padding: 0;
+          font-size: 13px;
+          color: #bdbdbd;
+          b {
+            display: block;
+            font-size: 15px;
+            line-height: 1.33;
+            font-weight: 700;
+            color: #000000;
+          }
+        }
+      }
+    }
+  }
+}

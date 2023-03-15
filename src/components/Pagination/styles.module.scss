@@ -1,0 +1,51 @@
+.pagination {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  .leftButton,
+  .rightButton {
+    font-size: 0;
+    a {
+      display: flex;
+      position: relative;
+    }
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.2;
+      cursor: text;
+    }
+    &:hover:not(.disabled) {
+      opacity: 0.5;
+    }
+  }
+  .leftButton {
+    margin-right: 10px;
+    a {
+      &::before {
+        content: "";
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        border-radius: 50%;
+        border: 2px solid #000;
+        background: url("../../img/icons/arrow-left.svg") center no-repeat;
+      }
+    }
+  }
+
+  .rightButton {
+    a {
+      &::before {
+        content: "";
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        border-radius: 50%;
+        border: 2px solid #000;
+        background: url("../../img/icons/arrow-right.svg") center no-repeat;
+      }
+    }
+  }
+}

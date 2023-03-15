@@ -1,0 +1,21 @@
+.paginationWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 90px;
+}
+.articlesWrapper {
+  width: 940px;
+  margin-bottom: 42px;
+}
+
+.noPages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 940px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  min-height: 460px;
+  font-size: 32px;
+  font-weight: 600;
+}
