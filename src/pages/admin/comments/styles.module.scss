@@ -1,0 +1,97 @@
+.wrapper {
+  min-width: 1000px;
+  background-color: #bfdcf7;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+  .mainPage {
+    width: 1000px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0;
+    .commentsSection {
+      width: 940px;
+      min-height: 610px;
+      padding: 30px 40px 100px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 40px;
+      background-color: #fff;
+      border-radius: 30px;
+      .title {
+        padding: 0;
+        margin: 0 0 40px;
+        font-size: 40px;
+        line-height: 50px;
+        font-weight: 500;
+      }
+      .commentsList {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        .listItem {
+          position: relative;
+          padding-right: 30px;
+          margin-bottom: 19px;
+          border-bottom: 1px solid #bdbdbd;
+          .header {
+            display: flex;
+            margin-bottom: 10px;
+            .name {
+              position: relative;
+              margin-right: 19px;
+              font-weight: 700;
+              font-size: 13px;
+              line-height: 20px;
+            }
+            .time {
+              display: block;
+              font-size: 13px;
+              line-height: 20px;
+              color: #000;
+            }
+          }
+          .text {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 20px;
+          }
+          .articleTitle {
+            padding: 0;
+            margin: 0 0 20px;
+            font-weight: 700;
+            font-size: 13px;
+            line-height: 20px;
+          }
+          .button {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            justify-content: center;
+            flex-wrap: wrap;
+            line-height: 1.33;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 0;
+            background: url("../../../img/icons/cross-white.svg") no-repeat
+              center;
+            background-color: #bdbdbd;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}

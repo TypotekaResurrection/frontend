@@ -1,0 +1,110 @@
+.wrapper {
+  min-width: 1000px;
+  background-color: #bfdcf7;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+  .createSection {
+    margin: 0 auto 50px;
+    z-index: 0;
+    width: 940px;
+    min-height: 860px;
+    position: relative;
+    border-radius: 30px;
+    background-color: #fff;
+    .newPublication {
+      padding: 20px 40px;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        margin-top: -38px;
+        right: 13%;
+        border: 19px solid transparent;
+        border-bottom: 24px solid #fff;
+      }
+      .publicationHeader {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        h1 {
+          margin: 9px auto 0 0;
+          font-size: 25px;
+        }
+        .publicationDateForm {
+          margin-right: 80px;
+          h3 {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            font-weight: 400;
+          }
+          .division {
+            position: relative;
+            .dateBlock {
+              label {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                left: -30px;
+                top: -13px;
+                &::before {
+                  content: "";
+                  position: absolute;
+                  width: 20px;
+                  height: 20px;
+                  background: url("../../../img/icons/calendar.svg") center
+                    no-repeat;
+                  cursor: pointer;
+                }
+              }
+              input {
+                width: 80px;
+                border: 0;
+                font-weight: 700;
+                font-size: 13px;
+                line-height: 1.5;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+        .button {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          justify-content: center;
+          flex-wrap: wrap;
+          line-height: 1.33;
+          border: 0;
+          padding-bottom: 2px;
+          min-height: 50px;
+          background-color: #003db3;
+          background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            from(#0057ff),
+            to(#003db3)
+          );
+          background-image: linear-gradient(180deg, #0057ff 0%, #003db3 100%);
+          color: #fff;
+          border-radius: 15px;
+          width: 160px;
+          transition: all 200ms ease;
+          align-self: flex-end;
+          &:hover {
+            background: #4786ff;
+            box-shadow: 0 0 15px rgb(0 87 255 / 50%);
+          }
+        }
+      }
+    }
+  }
+}

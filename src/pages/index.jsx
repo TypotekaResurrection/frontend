@@ -6,9 +6,9 @@ import HotArticlesSection from "@components/HotArticlesSection";
 import LastCommentsSection from "@components/LastCommentsSection";
 import Footer from "@components/Footer";
 import ArticlesSection from "@components/ArticlesSection";
-import hotArticles from "@mocks/hotArticles"
-import articles from "@mocks/articles"
-import comments from "@mocks/comments"
+import hotArticles from "@mocks/hotArticles";
+import articles from "@mocks/articles";
+import comments from "@mocks/comments";
 
 import { useState } from "react";
 // import { useAuth } from "api/auth";
@@ -17,7 +17,7 @@ import { useState } from "react";
 
 export default function Home({ lastComments, hotArticles, articles }) {
   const [themes, setThemes] = useState([]);
-  const [isUser, isAdmin] = [true, true];
+  const [isUser, isAdmin] = [false, false];
 
   function handleThemeListChange({ activeThemes }) {
     setThemes(activeThemes);

@@ -10,7 +10,8 @@
       "@models/*": ["models/*"],
       "@utils/*": ["utils/*"],
       "@mocks/*": ["mocks/*"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@api/*": ["api/*"]
     }
   }
 }

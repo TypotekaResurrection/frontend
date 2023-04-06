@@ -8,6 +8,7 @@ import { setToken } from "api/utils/tokenService";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isChanged, setIsChanged] = useState(false);
   const canLogin = email && password;
 
   async function login() {
@@ -46,6 +47,7 @@ function Login() {
                     name="email"
                     placeholder="Електронна пошта"
                     onChange={(e) => {
+                      setIsChanged(true);
                       setEmail(e.target.value);
                     }}
                     required=""
@@ -61,13 +63,14 @@ function Login() {
                     name="password"
                     placeholder="Пароль"
                     onChange={(e) => {
+                      setIsChanged(true);
                       setPassword(e.target.value);
                     }}
                     required=""
                   />
                 </label>
               </div>
-              {!canLogin ? (
+              {!canLogin && isChanged ? (
                 <p className={styles.errorContainerHeader}>
                   Немає паролю чи пошти
                 </p>
@@ -80,6 +83,7 @@ function Login() {
                   e.preventDefault();
                   login();
                 }}
+                disabled={!canLogin}
               >
                 Увійти
               </button>

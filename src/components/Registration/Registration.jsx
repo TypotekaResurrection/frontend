@@ -1,9 +1,7 @@
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useState } from "react";
-import { getToken, signup } from "api/auth";
-import { setToken } from "api/utils/tokenService";
-import Router from "next/router";
+import { useAuth, signUp } from "api/auth";
 
 function Registration() {
   const [email, setEmail] = useState("");
@@ -11,6 +9,8 @@ function Registration() {
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [isChanged, setIsChanged] = useState(false);
+
   const hasEmptyFields =
     !email || !name || !surname || !password || !repeatPassword;
   const passwordsNotSame =
@@ -18,20 +18,19 @@ function Registration() {
   const canSignup = !hasEmptyFields && !passwordsNotSame;
 
   const [errors, setErrors] = useState([]);
+  const { signIn } = useAuth();
   async function handleSignupButtonClick() {
     if (canSignup) {
       try {
-        const { data } = await signup(
-          email,
+        const { data } = await signUp({
           name,
           surname,
+          email,
           password,
-          repeatPassword
-        );
-        if (data) {
-          const token = (await getToken(email, password)).data;
-          setToken(token);
-          Router.push({ pathname: "/" });
+          repeatPassword,
+        });
+        if (data.id) {
+          signIn({ email, password });
         }
       } catch (error) {
         if (error.response) {
@@ -72,6 +71,7 @@ function Registration() {
                     placeholder="Електронна пошта"
                     required=""
                     onChange={(e) => {
+                      setIsChanged(true);
                       setEmail(e.target.value);
                     }}
                   />
@@ -86,6 +86,7 @@ function Registration() {
                     placeholder="Ім'я"
                     required=""
                     onChange={(e) => {
+                      setIsChanged(true);
                       setName(e.target.value);
                     }}
                   />
@@ -99,6 +100,7 @@ function Registration() {
                     name="surname"
                     placeholder="Прізвище"
                     onChange={(e) => {
+                      setIsChanged(true);
                       setSurname(e.target.value);
                     }}
                   />
@@ -113,6 +115,7 @@ function Registration() {
                     placeholder="Пароль"
                     required=""
                     onChange={(e) => {
+                      setIsChanged(true);
                       setPassword(e.target.value);
                     }}
                   />
@@ -127,12 +130,13 @@ function Registration() {
                     placeholder="Повтор паролю"
                     required=""
                     onChange={(e) => {
+                      setIsChanged(true);
                       setRepeatPassword(e.target.value);
                     }}
                   />
                 </label>
               </div>
-              {!canSignup || errors.length !== 0 ? (
+              {(!canSignup || errors.length !== 0) && isChanged ? (
                 <div className={styles.errorContainer}>
                   <p className={styles.errorContainerHeader}>
                     Помилки реєстрації:
@@ -159,6 +163,7 @@ function Registration() {
                   e.preventDefault();
                   handleSignupButtonClick();
                 }}
+                disabled={!canSignup}
               >
                 Зареєструватись
               </button>
