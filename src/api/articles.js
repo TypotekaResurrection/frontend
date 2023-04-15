@@ -1,9 +1,23 @@
 import { useEffect, useState } from "react";
 import { buildDeleteRequest, buildGetRequest, buildPostRequest } from "./utils";
 import { getToken } from "./utils/tokenService";
+import { gql } from "@apollo/client";
 
-export async function getArticles() {
-  return await buildGetRequest("/articles/");
+export const getArticlesQuery = gql`
+  query GetArticles {
+    getArticles {
+      id
+      title
+      date
+      preview
+      text
+      userId
+    }
+  }
+`;
+
+export async function getArticles(client) {
+  return await client.query({ query: getArticlesQuery });
 }
 
 export async function getHotArticles(limit = 4) {

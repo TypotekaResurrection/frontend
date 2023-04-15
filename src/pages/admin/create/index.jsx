@@ -1,7 +1,7 @@
 import Header from "@components/Header";
 import PublicationForm from "@components/PublicationForm";
 import { createArticle } from "api/articles";
-import { useAdminGuard } from "api/auth";
+import { useAdminGuard, useAuth } from "@api/auth";
 import Router from "next/router";
 import { useState } from "react";
 import styles from "./styles.module.scss";
@@ -15,8 +15,8 @@ function AdminCreatePage() {
     preview: "",
   });
   const canPost = form.title && form.text && form.preview;
-
-  useAdminGuard();
+  const { isStaff } = useAuth();
+  useAdminGuard(isStaff);
 
   async function handlePostButtonClick(e) {
     e.preventDefault();

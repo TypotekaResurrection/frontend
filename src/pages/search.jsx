@@ -5,10 +5,10 @@ import { useAuth } from "api/auth";
 import styles from "./styles.module.scss";
 
 export default function NotFound() {
-  //const [isUser, isAdmin] = useAuth();
+  const { isSignedIn, isStaff } = useAuth();
   return (
     <div className={styles.wrapper}>
-      <Header isUser={false} isAdmin={false} />
+      <Header isUser={isSignedIn()} isAdmin={isStaff} />
       <Search />
       <Footer />
     </div>

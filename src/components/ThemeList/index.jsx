@@ -3,11 +3,25 @@ import global from "@styles/global.module.scss";
 import ThemeListItem from "@components/ThemeListItem";
 import { getArticlesFromJson, getCategoriesFromArticles } from "utils";
 import { useEffect, useState } from "react";
+import { getCategories } from "@api/categories";
+import { useAuth } from "@api/auth";
 
-function ThemeList({ onChange }) {
-  const articles = getArticlesFromJson();
+function ThemeList({ onChange, loadFromSource }) {
+  const [themes, setThemes] = useState([]);
+  const { createApolloClient } = useAuth();
+  useEffect(() => {
+    const loadThemes = async () => {
+      if (loadFromSource) {
+        const sourceThemes = await getCategories(createApolloClient());
+        setThemes(sourceThemes);
+      } else {
+        const articles = getArticlesFromJson();
+        setThemes(getCategoriesFromArticles(articles));
+      }
+    };
+    loadThemes();
+  }, []);
 
-  const themes = getCategoriesFromArticles(articles);
   const [activeThemes, setActiveThemes] = useState([]);
 
   useEffect(() => {

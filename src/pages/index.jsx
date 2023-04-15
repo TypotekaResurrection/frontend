@@ -6,18 +6,13 @@ import HotArticlesSection from "@components/HotArticlesSection";
 import LastCommentsSection from "@components/LastCommentsSection";
 import Footer from "@components/Footer";
 import ArticlesSection from "@components/ArticlesSection";
-import hotArticles from "@mocks/hotArticles";
-import articles from "@mocks/articles";
-import comments from "@mocks/comments";
 
 import { useState } from "react";
-// import { useAuth } from "api/auth";
-// import { getArticles, getHotArticles } from "api/articles";
-// import { getAllLastComments } from "api/comments";
+import { useAuth } from "@api/auth";
 
-export default function Home({ lastComments, hotArticles, articles }) {
+export default function Home() {
   const [themes, setThemes] = useState([]);
-  const [isUser, isAdmin] = [false, false];
+  const { isSignedIn, isStaff } = useAuth();
 
   function handleThemeListChange({ activeThemes }) {
     setThemes(activeThemes);
@@ -25,7 +20,7 @@ export default function Home({ lastComments, hotArticles, articles }) {
 
   return (
     <div className={styles.wrapper}>
-      <Header isUser={isUser} isAdmin={isAdmin} />
+      <Header isUser={isSignedIn()} isAdmin={isStaff} />
       <main className={styles.main}>
         <h1 className={global.visuallyHidden}>
           Головна сторінка особистого блогу
@@ -36,19 +31,12 @@ export default function Home({ lastComments, hotArticles, articles }) {
         </p>
         <ThemeList onChange={handleThemeListChange} />
         <div className={styles.flexSection}>
-          <HotArticlesSection articles={hotArticles} />
-          <LastCommentsSection comments={lastComments} />
+          <HotArticlesSection />
+          <LastCommentsSection />
         </div>
-        <ArticlesSection articles={articles} filter={themes} />
+        <ArticlesSection filter={themes} />
       </main>
       <Footer />
     </div>
   );
-}
-export async function getServerSideProps() {
-  // const hotArticles = (await fetch('mocks/hotArticles.json')).data.results ?? [];
-  // const lastComments = (await fetch('mocks/comments.json')).data.results ?? [];
-  // const articles = (await fetch('mocks/articles.json')).data ?? [];
-
-  return { props: { hotArticles, comments, articles } };
 }

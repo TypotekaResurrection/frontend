@@ -2,24 +2,30 @@ import styles from "./styles.module.scss";
 import Router from "next/router";
 import Link from "next/link";
 import { useState } from "react";
-import { getToken } from "api/auth";
-import { setToken } from "api/utils/tokenService";
+import { useAuth } from "api/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isChanged, setIsChanged] = useState(false);
+  const [errors, setErrors] = useState(false);
   const canLogin = email && password;
 
+  const { signIn } = useAuth();
   async function login() {
     if (canLogin) {
+      setErrors([]);
       try {
-        const token = (await getToken(email, password)).data;
-        setToken(token);
+        await signIn({ email, password });
         Router.push({ pathname: "/" });
-        console.debug(token);
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        if (error.graphQLErrors) {
+          let errors = [];
+          for (error of error.graphQLErrors) {
+            errors = [...errors, error.message];
+          }
+          setErrors(errors);
+        }
       }
     }
   }
@@ -48,6 +54,7 @@ function Login() {
                     placeholder="Електронна пошта"
                     onChange={(e) => {
                       setIsChanged(true);
+                      setErrors([]);
                       setEmail(e.target.value);
                     }}
                     required=""
@@ -64,6 +71,7 @@ function Login() {
                     placeholder="Пароль"
                     onChange={(e) => {
                       setIsChanged(true);
+                      setErrors([]);
                       setPassword(e.target.value);
                     }}
                     required=""
@@ -75,7 +83,13 @@ function Login() {
                   Немає паролю чи пошти
                 </p>
               ) : null}
-
+              {errors.length > 0
+                ? errors.map((error, index) => (
+                    <p className={styles.errorContainerHeader} key={index}>
+                      {error}
+                    </p>
+                  ))
+                : null}
               <button
                 className={styles.button}
                 type="submit"

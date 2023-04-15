@@ -1,7 +1,7 @@
 import CategoryEditor from "@components/CategoryEditor";
 import Footer from "@components/Footer";
 import Header from "@components/Header";
-import { useAdminGuard } from "api/auth";
+import { useAdminGuard, useAuth } from "api/auth";
 import {
   addCategory,
   deleteCategory,
@@ -14,7 +14,9 @@ import styles from "./styles.module.scss";
 function AdminCategoriesPage() {
   const [currentCategories, setCurrentCategories] = useState([]);
   const [newCategoryName, setNewCategoryName] = useState("");
-  useAdminGuard();
+  const { isStaff, createApolloClient } = useAuth();
+  const client = createApolloClient();
+  useAdminGuard(isStaff);
 
   useEffect(() => {
     updateCategories();
@@ -24,7 +26,7 @@ function AdminCategoriesPage() {
     e.preventDefault();
     if (newCategoryName) {
       try {
-        await addCategory(newCategoryName);
+        await addCategory(client, newCategoryName);
         await updateCategories();
         setNewCategoryName("");
       } catch (e) {
@@ -35,7 +37,7 @@ function AdminCategoriesPage() {
 
   async function handleSaveButtonClick(id, name) {
     try {
-      await saveCategory(id, name);
+      await saveCategory(client, id, name);
       await updateCategories();
     } catch (e) {
       console.log(e);
@@ -44,7 +46,7 @@ function AdminCategoriesPage() {
 
   async function handleCategoryDelete(id) {
     try {
-      await deleteCategory(id);
+      await deleteCategory(client, id);
       await updateCategories();
     } catch (e) {
       console.log(e);
@@ -53,7 +55,7 @@ function AdminCategoriesPage() {
 
   async function updateCategories() {
     try {
-      const categories = (await getCategories()).data;
+      const categories = await getCategories(client);
       setCurrentCategories(categories);
     } catch (error) {
       console.log(error);

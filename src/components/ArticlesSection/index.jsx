@@ -2,17 +2,21 @@ import ArticlesPreviewView from "@components/ArticlesPreviewView";
 import Pagination from "@components/Pagination";
 import { PaginationParams } from "@models/pagination";
 import { useState } from "react";
-import { getArticlesFromJson } from "utils";
 import styles from "./styles.module.scss";
+import { useQuery } from "@apollo/client";
+import { getArticlesQuery } from "@api/articles";
 
 function ArticlesSection({ filter }) {
-  const articles = getArticlesFromJson().filter((article) =>
-    filter.length === 0
-      ? true
-      : article.categories.some((val) => filter.includes(val))
-  );
+  const { data } = useQuery(getArticlesQuery);
 
-  const getArticlesCount = () => articles.length;
+  const articles =
+    data?.getArticlesQuery?.filter((article) =>
+      filter.length === 0
+        ? true
+        : article.categories.some((val) => filter.includes(val))
+    ) || [];
+
+  const getArticlesCount = () => articles?.length;
 
   const articlesPerOnePage = 4;
   const paginationItemsPerPage = 4;
@@ -28,14 +32,14 @@ function ArticlesSection({ filter }) {
     articlesPerOnePage * currentPage + articlesPerOnePage - 1;
 
   const getCurrentArticles = () =>
-    articles.filter(
+    articles?.filter(
       (_, index) => index >= articleStartIndex && index <= articleEndIndex
     );
 
   return (
     <div className={styles.articlesSectionWrapper}>
       <section className={styles.articlesWrapper}>
-        {articles.length !== 0 ? (
+        {articles?.length !== 0 ? (
           <ArticlesPreviewView articles={getCurrentArticles()} />
         ) : (
           <div className={styles.noPages}>Тут поки нічого немає...</div>

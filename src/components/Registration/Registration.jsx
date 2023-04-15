@@ -23,24 +23,20 @@ function Registration() {
     if (canSignup) {
       try {
         const { data } = await signUp({
-          name,
-          surname,
+          firstName: name,
+          lastName: surname,
           email,
           password,
-          repeatPassword,
+          passwordConfirmation: repeatPassword,
         });
         if (data.id) {
           signIn({ email, password });
         }
       } catch (error) {
-        if (error.response) {
-          const { data } = error.response;
+        if (error.graphQLErrors) {
           let errors = [];
-          if (data.password) {
-            errors = [...errors, ...data.password];
-          }
-          if (data.email) {
-            errors.concat(...errors, ...data.email);
+          for (error of error.graphQLErrors) {
+            errors = [...errors, error.message];
           }
           setErrors(errors);
         }
@@ -163,7 +159,7 @@ function Registration() {
                   e.preventDefault();
                   handleSignupButtonClick();
                 }}
-                disabled={!canSignup}
+                // disabled={!canSignup}
               >
                 Зареєструватись
               </button>

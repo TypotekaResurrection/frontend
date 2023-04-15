@@ -61,7 +61,7 @@ function PublicationForm({ value, onChange }) {
           </label>
         </div>
         <div className={styles.categoriesWrapper}>
-          <ThemeList onChange={handleCategoryChoice} />
+          <ThemeList onChange={handleCategoryChoice} loadFromSource={true} />
         </div>
         <div className={styles.textWrapper}>
           <ArticleEditor value={text} onChange={setText} />

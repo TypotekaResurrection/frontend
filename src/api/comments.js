@@ -2,6 +2,18 @@ import { useState, useEffect } from "react";
 import { buildDeleteRequest, buildGetRequest, buildPostRequest } from "./utils";
 import { getToken } from "./utils/tokenService";
 
+export const getAllCommentsQuery = gql`
+  query GetAllComments {
+    getComments {
+      id
+      timeDate
+      content
+      articleName
+      userName
+    }
+  }
+`;
+
 export async function getComments(articleId) {
   return await buildGetRequest("/articles/" + articleId + "/comments/");
 }
