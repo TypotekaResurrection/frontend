@@ -18,10 +18,6 @@ export function AuthProvider({ children }) {
     if (getTokenFromStorage() && !auth.isSignedIn()) {
       auth.initSavedToken();
     }
-
-    return () => {
-      auth.setupStaff();
-    };
   }, [auth]);
 
   return (
@@ -40,6 +36,7 @@ export const useAuth = () => {
 function useProvideAuth() {
   const [authToken, setAuthToken] = useState(null);
   const [isStaff, setIsStaff] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const isSignedIn = () => {
     if (authToken) {
@@ -49,8 +46,11 @@ function useProvideAuth() {
     }
   };
 
-  const setupStaff = async () => {
-    const newClient = createApolloClient();
+  const setupStaff = async (token = authToken) => {
+    setLoading(true);
+    const newClient = createApolloClient({
+      authorization: `Bearer ${token}`,
+    });
 
     const isStaffQuery = gql`
       query GetUserInfo {
@@ -69,7 +69,9 @@ function useProvideAuth() {
   };
 
   const initSavedToken = async () => {
-    setAuthToken(getTokenFromStorage());
+    await setAuthToken(getTokenFromStorage());
+    await setupStaff(getTokenFromStorage());
+    setLoading(false);
   };
 
   const getAuthHeaders = () => {
@@ -80,10 +82,10 @@ function useProvideAuth() {
     };
   };
 
-  const createApolloClient = () => {
+  const createApolloClient = (headers = getAuthHeaders()) => {
     const link = new HttpLink({
       uri: "http://localhost:3000/api/graphql",
-      headers: getAuthHeaders(),
+      headers,
     });
 
     return new ApolloClient({
@@ -93,6 +95,7 @@ function useProvideAuth() {
   };
 
   const signIn = async ({ email, password }) => {
+    setLoading(true);
     const client = createApolloClient();
     const LoginQuery = gql`
       query Login($input: LoginInput!) {
@@ -115,13 +118,14 @@ function useProvideAuth() {
     if (result?.data?.login) {
       await setAuthToken(result.data.login);
       setTokenInStorage(result.data.login);
-      await setupStaff();
+      await setupStaff(result.data.login);
     }
+    setLoading(false);
   };
 
   const signOut = () => {
     setAuthToken(null);
-    setTokenInStorage(null);
+    setTokenInStorage("");
     setIsStaff(false);
   };
 
@@ -129,6 +133,7 @@ function useProvideAuth() {
     setAuthToken,
     isSignedIn,
     isStaff,
+    isLoading,
     signIn,
     signOut,
     createApolloClient,

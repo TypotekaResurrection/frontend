@@ -92,7 +92,8 @@
           box-shadow: 0 0 15px rgb(0 87 255 / 50%);
         }
       }
-      .registration {
+      .registration,
+      .sent {
         display: block;
         margin-left: 20px;
         width: 548px;
@@ -107,6 +108,24 @@
             line-height: 1.33;
             font-weight: 700;
             color: #000000;
+          }
+        }
+      }
+      .sent {
+        margin-left: 0;
+        textarea {
+          width: 497px;
+          padding: 10px;
+          font-size: 21px;
+          line-height: 25px;
+          display: flex;
+          justify-content: center;
+          resize: none;
+          border: 0;
+          background: 0 0;
+          &:focus,
+          &:active {
+            outline: none;
           }
         }
       }

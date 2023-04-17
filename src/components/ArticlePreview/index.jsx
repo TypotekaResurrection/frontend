@@ -7,7 +7,7 @@ function ArticlePreview({ article }) {
   const { categories } = article;
   const getArticleHref = () =>
     "/articles/" + slugify(article.title.toLowerCase());
-  const hasImage = typeof article.image != "undefined";
+  const hasImage = typeof article.imageUrl != "undefined";
 
   const getCategoryBreadCrumbs = () =>
     categories.map((category) => (
@@ -24,7 +24,7 @@ function ArticlePreview({ article }) {
       {hasImage ? (
         <div className={styles.previewBackground}>
           <Image
-            src={article.image}
+            src={article.imageUrl}
             alt="Article background"
             width={560}
             height={300}
@@ -34,7 +34,7 @@ function ArticlePreview({ article }) {
       <h3 className={styles.name}>
         <Link href={getArticleHref()}>{article.title}</Link>
       </h3>
-      <p className={styles.previewText}>{article.text.slice(0, 240) + "..."}</p>
+      <p className={styles.previewText}>{article.preview}</p>
       <a
         href={getArticleHref() + "#comments"}
         className={styles.previewComments}

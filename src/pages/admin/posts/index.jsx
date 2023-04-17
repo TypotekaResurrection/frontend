@@ -3,22 +3,25 @@ import Header from "@components/Header";
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import slugify from "slugify";
-import { useAdminGuard } from "api/auth";
-import { deleteArticle, useArticles } from "api/articles";
+import { useAdminGuard, useAuth } from "api/auth";
+import { deleteArticle, getArticlesQuery } from "api/articles";
+import { useQuery } from "@apollo/client";
 
 function AdminPostsPage() {
-  const [articles, updateArticles] = useArticles();
+  const { isStaff, createApolloClient } = useAuth();
+
+  useAdminGuard(isStaff);
+  const { data, refetch } = useQuery(getArticlesQuery);
+  const articles = data?.getArticles || [];
 
   async function handleDeleteButtonClick(id) {
     try {
-      await deleteArticle(id);
-      await updateArticles();
+      await deleteArticle(createApolloClient(), id);
+      await refetch();
     } catch (e) {
       console.log(e);
     }
   }
-
-  useAdminGuard();
   return (
     <div className={styles.wrapper}>
       <Header isAdmin isUser />

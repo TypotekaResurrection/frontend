@@ -8,9 +8,8 @@ import { getArticlesQuery } from "@api/articles";
 
 function ArticlesSection({ filter }) {
   const { data } = useQuery(getArticlesQuery);
-
   const articles =
-    data?.getArticlesQuery?.filter((article) =>
+    data?.getArticles?.filter((article) =>
       filter.length === 0
         ? true
         : article.categories.some((val) => filter.includes(val))

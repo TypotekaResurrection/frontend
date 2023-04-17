@@ -62,6 +62,7 @@ export function getCategoriesFromArticles(articles) {
       }
     });
   });
+  console.log(categoriesMap);
   return Array.from(categoriesMap).map(
     ([title, count]) => new ThemeModel(title, count)
   );

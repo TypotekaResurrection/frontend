@@ -2,15 +2,17 @@ import styles from "./styles.module.scss";
 import SearchResult from "@components/SearchResult/SearchResult";
 import { useState } from "react";
 import { searchForArticles } from "api/articles";
+import { useAuth } from "@api/auth";
 
 function Search() {
+  const { createApolloClient } = useAuth();
   const [search, setSearch] = useState("");
   const [articles, setArticles] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   async function handleSendButtonClick() {
     setHasSearched(true);
     try {
-      const result = await (await searchForArticles(search)).data;
+      const result = await searchForArticles(createApolloClient(), search);
       setArticles(result);
     } catch (e) {
       console.log(e);

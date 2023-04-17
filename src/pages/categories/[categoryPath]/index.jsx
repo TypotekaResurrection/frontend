@@ -5,11 +5,11 @@ import Footer from "@components/Footer";
 import ArticlesSection from "@components/ArticlesSection";
 import { getCategories } from "api/categories";
 import { getArticles } from "api/articles";
-import { useAuth } from "api/auth";
+import client from "@api/apollo-client";
 
 export async function getServerSideProps(context) {
-  const articles = (await getArticles()).data ?? [];
-  const categories = (await (await getCategories()).data) ?? [];
+  const articles = (await getArticles(client)) ?? [];
+  const categories = (await await getCategories(client)) ?? [];
   const category = categories.find(
     (category) =>
       slugify(category.name.toLowerCase()) === context.params.categoryPath
@@ -24,16 +24,14 @@ export async function getServerSideProps(context) {
 }
 
 function CategoryPage({ categoryName, articles }) {
+  console.log(categoryName);
   //const [isUser, isAdmin] = useAuth();
   return (
     <div className={styles.wrapper}>
       <Header isUser={false} isAdmin={false} />
       <main className={styles.categoryPage}>
         <h1>{categoryName}</h1>
-        <ArticlesSection
-          articles={articles}
-          filter={[{ title: categoryName }]}
-        />
+        <ArticlesSection articles={articles} filter={[categoryName]} />
       </main>
       <Footer />
     </div>

@@ -1,32 +1,81 @@
 import Header from "@components/Header";
 import PublicationForm from "@components/PublicationForm";
-import { createArticle } from "api/articles";
+import { createArticle, getArticlesQuery, updateArticle } from "api/articles";
 import { useAdminGuard, useAuth } from "@api/auth";
 import Router from "next/router";
-import { useState } from "react";
+import client from "@api/apollo-client";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { useQuery } from "@apollo/client";
 import { getCategoriesQuery } from "@api/categories";
+import slugify from "slugify";
 
-function AdminCreatePage() {
-  const [form, setForm] = useState({
-    title: "",
-    imageUrl: "",
-    chosenCategories: [],
-    text: "**Hello world**",
-    preview: "",
-  });
-  const canPost = form.title && form.text && form.preview;
+export async function getStaticPaths() {
+  const articles = (await client.query({ query: getArticlesQuery })).data
+    .getArticles;
+  const paths = [
+    ...articles.map((article) => ({
+      params: {
+        articlePath: slugify(article.title.toLowerCase()),
+      },
+    })),
+  ];
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps(context) {
+  const articles = (await client.query({ query: getArticlesQuery })).data
+    .getArticles;
+  const article = articles.find(
+    (article) =>
+      slugify(article.title.toLowerCase()) === context.params.articlePath
+  );
+
+  return {
+    props: {
+      articlePath: context.params.articlePath,
+      articleJSON: JSON.stringify(article),
+    },
+  };
+}
+
+function AdminEditPage({ articleJSON }) {
+  const article = JSON.parse(articleJSON);
   const { isStaff, createApolloClient } = useAuth();
+  useAdminGuard(isStaff);
   const { data } = useQuery(getCategoriesQuery);
   const allCategories = data?.getCategories || [];
-  useAdminGuard(isStaff);
+
+  const [form, setForm] = useState({
+    title: article.title,
+    imageUrl: article.imageUrl,
+    chosenCategories: [],
+    text: article.text,
+    preview: article.preview,
+  });
+
+  useEffect(() => {
+    setForm({
+      ...form,
+      chosenCategories: allCategories
+        .filter((category) => article.categories.includes(category.name))
+        .map((category) => category.name),
+    });
+  }, [allCategories]);
+
+  console.log(form.chosenCategories);
+
+  const canPost = form.title && form.text && form.preview;
 
   async function handlePostButtonClick(e) {
     e.preventDefault();
     if (canPost) {
       try {
-        await createArticle(createApolloClient(), {
+        await updateArticle(createApolloClient(), {
+          id: article.id,
           title: form.title,
           text: form.text,
           preview: form.preview,
@@ -34,6 +83,7 @@ function AdminCreatePage() {
           categoryIds: allCategories
             .filter((category) => form.chosenCategories.includes(category.name))
             .map((category) => category.id),
+          date: new Date(),
         });
         Router.push("/admin/posts/");
       } catch (e) {
@@ -50,7 +100,7 @@ function AdminCreatePage() {
             <div className={styles.newPublication}>
               <form action="#" method="POST">
                 <div className={styles.publicationHeader}>
-                  <h1>Нова публікація</h1>
+                  <h1>Редагування публікації</h1>
                   <div className={styles.publicationDateForm}>
                     <h3>Дата публікації</h3>
                     <div className={styles.division}>
@@ -62,7 +112,9 @@ function AdminCreatePage() {
                         <input
                           type="text"
                           name="date"
-                          placeholder={new Date().toLocaleDateString()}
+                          placeholder={new Date(
+                            article.date
+                          ).toLocaleDateString()}
                           id="new-publication-date"
                           readOnly
                         />
@@ -73,7 +125,7 @@ function AdminCreatePage() {
                     className={styles.button}
                     onClick={handlePostButtonClick}
                   >
-                    Опублікувати
+                    Оновити
                   </button>
                 </div>
                 <PublicationForm value={form} onChange={setForm} />
@@ -86,4 +138,4 @@ function AdminCreatePage() {
   );
 }
 
-export default AdminCreatePage;
+export default AdminEditPage;

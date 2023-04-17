@@ -5,7 +5,7 @@ function LastCommentsList({ comments }) {
   return (
     <ul className={styles.lastCommentsList}>
       {comments.map((comment) => (
-        <LastCommentsListItem comment={comment} key={comment.name} />
+        <LastCommentsListItem comment={comment} key={comment.id} />
       ))}
     </ul>
   );

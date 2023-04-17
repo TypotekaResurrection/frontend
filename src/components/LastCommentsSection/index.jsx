@@ -1,9 +1,15 @@
 import LastCommentsList from "@components/LastCommentsList";
 import styles from "./styles.module.scss";
-import { getLastCommentsFromJson } from "utils";
+import { useQuery } from "@apollo/client";
+import { getAllCommentsQuery } from "@api/comments";
 
 function LastCommentsSection() {
-  let comments = getLastCommentsFromJson();
+  const { data } = useQuery(getAllCommentsQuery, {
+    variables: {
+      limit: 3,
+    },
+  });
+  let comments = data?.getComments || [];
 
   return (
     <section className={styles.lastCommentsSection}>

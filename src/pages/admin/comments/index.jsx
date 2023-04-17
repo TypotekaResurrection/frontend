@@ -3,22 +3,31 @@ import Header from "@components/Header";
 import styles from "./styles.module.scss";
 import slugify from "slugify";
 import Link from "next/link";
-import { useAdminGuard } from "api/auth";
-import { deleteComment, useAllComments } from "api/comments";
+import { useAdminGuard, useAuth } from "api/auth";
+import {
+  deleteComment,
+  getAllCommentsQuery,
+  getCommentsFromArticleQuery,
+} from "api/comments";
+import { useQuery } from "@apollo/client";
 
 function AdminCommentsPage() {
-  const [comments, updateComments] = useAllComments();
+  const { createApolloClient, isStaff } = useAuth();
+  useAdminGuard(isStaff);
+  const { data, refetch } = useQuery(getAllCommentsQuery, {
+    variables: { limit: 240 },
+  });
+  const comments = data?.getComments || [];
 
   async function handleDeleteButton(id) {
     try {
-      await deleteComment(id);
-      await updateComments();
+      await deleteComment(createApolloClient(), id);
+      await refetch();
     } catch (e) {
       console.log(e);
     }
   }
 
-  useAdminGuard();
   return (
     <div className={styles.wrapper}>
       <Header isUser isAdmin />
@@ -29,25 +38,23 @@ function AdminCommentsPage() {
             {comments.map((comment) => (
               <li className={styles.listItem} key={comment.id}>
                 <div className={styles.header}>
-                  <b className={styles.name}>
-                    {comment.owner.first_name + comment.owner.last_name}
-                  </b>
+                  <b className={styles.name}>{comment.userName}</b>
                   <time
                     className={styles.time}
-                    dateTime={new Date(comment.time).toLocaleDateString()}
+                    dateTime={new Date(comment.date).toLocaleDateString()}
                   >
-                    {new Date(comment.time).toLocaleDateString().slice(0, 24)}
+                    {new Date(comment.date).toLocaleDateString().slice(0, 24)}
                   </time>
                 </div>
                 <Link
                   className={styles.text}
                   href={
-                    "/articles/" + slugify(comment.article.title.toLowerCase())
+                    "/articles/" + slugify(comment.articleName.toLowerCase())
                   }
                 >
                   {comment.content}
                 </Link>
-                <p className={styles.articleTitle}>{comment.article.title}</p>
+                <p className={styles.articleTitle}>{comment.articleName}</p>
                 <button
                   type="button"
                   className={styles.button}

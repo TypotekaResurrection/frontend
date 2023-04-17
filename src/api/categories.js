@@ -27,8 +27,8 @@ export const createCategoryMutation = gql`
 `;
 
 export const updateCategoryMutation = gql`
-  mutation UpdateCategory($input: UpdateCategoryInput!) {
-    updateCategory(input: $input) {
+  mutation UpdateCategory($id: Int!, $input: CreateCategoryInput!) {
+    updateCategory(id: $id, input: $input) {
       id
       name
     }
@@ -60,7 +60,7 @@ export async function saveCategory(client, id, name) {
   return (
     await client.mutate({
       mutation: updateCategoryMutation,
-      variables: { input: { name, id } },
+      variables: { id, input: { name } },
     })
   ).data.updateCategory;
 }

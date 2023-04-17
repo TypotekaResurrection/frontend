@@ -5,8 +5,9 @@ import { getArticlesFromJson, getCategoriesFromArticles } from "utils";
 import { useEffect, useState } from "react";
 import { getCategories } from "@api/categories";
 import { useAuth } from "@api/auth";
+import { getArticles } from "@api/articles";
 
-function ThemeList({ onChange, loadFromSource }) {
+function ThemeList({ onChange, loadFromSource, value = [] }) {
   const [themes, setThemes] = useState([]);
   const { createApolloClient } = useAuth();
   useEffect(() => {
@@ -15,18 +16,19 @@ function ThemeList({ onChange, loadFromSource }) {
         const sourceThemes = await getCategories(createApolloClient());
         setThemes(sourceThemes);
       } else {
-        const articles = getArticlesFromJson();
+        const articles = await getArticles(createApolloClient());
         setThemes(getCategoriesFromArticles(articles));
       }
     };
     loadThemes();
   }, []);
 
-  const [activeThemes, setActiveThemes] = useState([]);
+  console.log(value);
+  const [activeThemes, setActiveThemes] = useState([...value]);
 
   useEffect(() => {
     onChange({ activeThemes });
-  }, [activeThemes]);
+  }, [activeThemes, value]);
 
   function handleThemeListItemClick({ title }) {
     if (activeThemes.includes(title)) {
@@ -44,9 +46,9 @@ function ThemeList({ onChange, loadFromSource }) {
       <h2 className={global.visuallyHidden}>Теми блогу</h2>
       <ul className={styles.themes}>
         {themes.map((theme) => (
-          <li key={theme.title}>
+          <li key={theme.name}>
             <ThemeListItem
-              title={theme.title}
+              title={theme.name}
               state={false}
               count={theme.count}
               onClick={handleThemeListItemClick}

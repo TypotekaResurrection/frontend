@@ -1,6 +1,6 @@
 export class ThemeModel {
-  constructor(title, count) {
-    this.title = title;
+  constructor(name, count) {
+    this.name = name;
     this.count = count;
   }
 }
