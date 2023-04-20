@@ -99,7 +99,6 @@ export function useComments(client, articleId, initValue = []) {
   const [comments, setComments] = useState(initValue);
   const loadComments = async () => {
     try {
-      console.log(client, articleId);
       const newComments = await getComments(client, articleId, 240);
       setComments(newComments);
     } catch (e) {

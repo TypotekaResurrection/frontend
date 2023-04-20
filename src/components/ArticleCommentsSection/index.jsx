@@ -1,17 +1,21 @@
 import { useAuth } from "api/auth";
-import { addComment, useComments } from "api/comments";
+import {
+  addComment,
+  getCommentsFromArticleQuery,
+  useComments,
+} from "api/comments";
 import Router from "next/router";
 import { useState } from "react";
 import styles from "./styles.module.scss";
+import { useQuery } from "@apollo/client";
 
-function ArticleCommentsSection({ comments, articleId }) {
+function ArticleCommentsSection({ articleId }) {
   const { createApolloClient, isSignedIn } = useAuth();
   const client = createApolloClient();
-  const [currentComments, updateComments] = useComments(
-    client,
-    articleId,
-    comments
-  );
+  const { data, refetch } = useQuery(getCommentsFromArticleQuery, {
+    variables: { articleId, limit: 240 },
+  });
+  const comments = data?.getCommentsByArticleId || [];
 
   const [newComment, setNewComment] = useState("");
   const hasComments = comments.length !== 0;
@@ -19,7 +23,7 @@ function ArticleCommentsSection({ comments, articleId }) {
   async function saveComment() {
     try {
       await addComment(client, articleId, newComment);
-      await updateComments();
+      await refetch();
       setNewComment("");
     } catch (e) {
       console.log(e);
@@ -33,7 +37,7 @@ function ArticleCommentsSection({ comments, articleId }) {
         </h2>
         {hasComments ? (
           <ul className={styles.commentsList}>
-            {currentComments.map((comment) => {
+            {comments.map((comment) => {
               return (
                 <li className={styles.comment} key={comment.id}>
                   <div className={styles.text}>
